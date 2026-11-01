@@ -1,0 +1,6 @@
+# không bao giờ tải key và file tạm lên Vercel
+.env
+.env.local
+.env*.local
+node_modules
+.next

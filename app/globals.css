@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { color-scheme: dark; --font-garamond: "EB Garamond"; --font-jakarta: "Plus Jakarta Sans"; --font-grotesk: "Space Grotesk"; }
+  body {
+    @apply bg-void text-on-surface font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(16,185,129,0.10), transparent 70%),
+      radial-gradient(ellipse 40% 30% at 90% 60%, rgba(16,185,129,0.05), transparent 70%);
+    background-attachment: fixed;
+  }
+  ::selection { background: rgba(0,255,135,0.25); }
+}
+
+@layer components {
+  .glass { @apply bg-abyss/80 backdrop-blur-xl border border-white/[0.06] rounded-2xl; }
+  .glass-hover { @apply transition-all duration-300 hover:border-emerald/40 hover:shadow-float; }
+  .panel { @apply glass p-5 md:p-6; }
+  .label { @apply font-label text-label-md uppercase text-secondary; }
+  .label-sm { @apply font-label text-label-sm uppercase; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border border-emerald-mist/20 bg-emerald/10 px-2.5 py-1 font-label text-label-sm uppercase text-emerald-mist; }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald to-emerald-deep px-5 py-3
+           font-label text-label-lg uppercase text-white transition-all hover:shadow-halo disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-neon {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary-container px-5 py-3 font-label text-label-lg
+           uppercase text-[#003919] transition-all hover:shadow-halo disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-emerald/30 bg-glass/60 px-4 py-2.5
+           font-label text-label-md uppercase text-emerald-mist transition-all hover:border-primary-container hover:text-primary-container;
+  }
+  .field {
+    @apply w-full rounded-lg border border-white/[0.07] bg-abyss px-3.5 py-3 text-sm text-primary placeholder:text-slate-500
+           outline-none transition focus:border-emerald focus:ring-1 focus:ring-emerald/40;
+  }
+  .field-label { @apply mb-1.5 block font-label text-label-sm uppercase text-on-surface-variant; }
+  .seg { @apply flex rounded-lg bg-abyss p-1 border border-white/[0.06]; }
+  .seg button { @apply flex-1 rounded-md px-3 py-2 text-sm text-on-surface-variant transition; }
+  .seg button[data-on="true"] { @apply bg-primary-container text-[#003919] font-semibold; }
+  .ms { font-family: "Material Symbols Outlined"; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal;
+        text-transform: none; display: inline-block; white-space: nowrap; direction: ltr; -webkit-font-smoothing: antialiased;
+        font-variation-settings: "FILL" 0, "wght" 300; }
+  .prose-oracle p { @apply mb-3 leading-7 text-on-surface; }
+  .prose-oracle strong { @apply text-emerald-mist font-semibold; }
+  .prose-oracle h3, .prose-oracle h4 { @apply mb-2 mt-6 font-serif text-[19px] leading-6 text-[#f3d9a4]; }
+  .prose-oracle ul { @apply mb-3 list-disc pl-5 space-y-1; }
+  .prose-article { @apply text-[16px] leading-8 text-on-surface; }
+  .prose-article p { @apply mb-4; }
+  .prose-article h2 { @apply mb-3 mt-10 scroll-mt-24 font-serif text-[28px] leading-9 text-primary; }
+  .prose-article h3 { @apply mb-2 mt-6 scroll-mt-24 font-label text-[17px] font-semibold text-secondary; }
+  .prose-article strong { @apply font-semibold text-emerald-mist; }
+  .prose-article em { @apply text-on-surface-variant; }
+  .prose-article ul { @apply mb-4 list-disc space-y-1.5 pl-6 marker:text-primary-container; }
+  .prose-article .md-table { @apply mb-6 overflow-x-auto rounded-xl border border-white/[0.08]; }
+  .prose-article table { @apply w-full border-collapse text-[15px]; }
+  .prose-article th { @apply bg-white/[0.04] px-4 py-2.5 text-left font-semibold text-secondary; }
+  .prose-article td { @apply border-t border-white/[0.06] px-4 py-2.5 align-top; }
+  /* hình lá bài nằm bên trái, chữ chạy bên phải */
+  .prose-oracle .md-card { @apply float-left mb-2 mr-4 mt-1 w-[88px] rounded-lg border border-[#dcb56f]/40 shadow-[0_0_18px_rgba(220,181,111,.25)] sm:mr-5 sm:w-[118px]; }
+  .prose-oracle h3, .prose-oracle h4 { clear: both; }
+  .prose-oracle::after { content: ""; display: block; clear: both; }
+  .prose-oracle .md-card-rev { @apply rotate-180; }
+  .prose-oracle .md-table { @apply mb-4 overflow-x-auto rounded-lg border border-white/[0.08]; }
+  .prose-oracle table { @apply w-full border-collapse text-sm; }
+  .prose-oracle th { @apply bg-white/[0.04] px-3 py-2 text-left font-semibold text-secondary; }
+  .prose-oracle td { @apply border-t border-white/[0.06] px-3 py-2 align-top text-on-surface; }
+}
+
+/* ===== Nghi thức Tarot (chế độ tập trung) ===== */
+.ritual-bg {
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(64, 52, 140, 0.35), transparent 60%),
+    radial-gradient(ellipse at 50% 110%, rgba(0, 255, 135, 0.10), transparent 55%),
+    #05070b;
+}
+.ritual-stars, .ritual-stars::after {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 78% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 33% 72%, #fffa, transparent), radial-gradient(1px 1px at 61% 44%, #fff7, transparent),
+    radial-gradient(1px 1px at 88% 66%, #fff8, transparent), radial-gradient(1.5px 1.5px at 22% 48%, #ffe9a8aa, transparent),
+    radial-gradient(1px 1px at 47% 9%, #fff6, transparent), radial-gradient(1px 1px at 69% 86%, #fff8, transparent),
+    radial-gradient(1px 1px at 5% 83%, #fff6, transparent), radial-gradient(1.5px 1.5px at 93% 31%, #b9ffd9aa, transparent),
+    radial-gradient(1px 1px at 40% 92%, #fff6, transparent), radial-gradient(1px 1px at 55% 25%, #fff7, transparent);
+  background-size: 620px 620px;
+  animation: twinkle 6s ease-in-out infinite;
+}
+.ritual-stars::after { content: ""; background-size: 410px 410px; background-position: 120px 80px; animation-delay: -3s; }
+@keyframes twinkle { 0%, 100% { opacity: .55 } 50% { opacity: 1 } }
+
+.ritual-sigil { animation: sigil-spin 90s linear infinite; }
+@keyframes sigil-spin { to { transform: rotate(360deg) } }
+
+/* xáo bài: các lá bay tung rồi gom về */
+.shuffle-card { animation: shuffle-scatter 1.3s cubic-bezier(.45,.05,.3,1) 2 both; }
+@keyframes shuffle-scatter {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  45%, 55% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)); }
+}
+.deck-pulse { animation: deck-pulse 2.4s ease-in-out infinite; }
+@keyframes deck-pulse { 0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 210, 120, .25)); } 50% { filter: drop-shadow(0 0 26px rgba(255, 210, 120, .6)); } }
+
+/* vòng thở */
+.breath-ring { animation: breath 8s ease-in-out infinite; }
+@keyframes breath { 0%, 100% { transform: scale(.72); opacity: .55 } 50% { transform: scale(1.08); opacity: 1 } }
+.breath-in, .breath-out { animation: breath-text 8s ease-in-out infinite; }
+.breath-out { animation-delay: -4s; }
+@keyframes breath-text { 0%, 45% { opacity: 1 } 50%, 95% { opacity: 0 } 100% { opacity: 1 } }
+
+/* lật bài */
+.flip-inner { transition: transform .8s cubic-bezier(.3,.7,.2,1); transform-style: preserve-3d; }
+.flip-inner.is-flipped { transform: rotateY(180deg); }
+.flip-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; position: absolute; inset: 0; }
+.flip-back { transform: rotateY(180deg); }
+.reveal-burst { animation: burst .9s ease-out both; }
+@keyframes burst { 0% { transform: scale(.6); opacity: .9 } 100% { transform: scale(1.8); opacity: 0 } }
+
+.ritual-fade { animation: ritual-fade .6s ease-out both; }
+@keyframes ritual-fade { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+
+@media (prefers-reduced-motion: reduce) {
+  .shuffle-card, .ritual-sigil, .ritual-stars, .ritual-stars::after, .breath-ring, .deck-pulse { animation: none !important; }
+  .flip-inner { transition: none; }
+}
+
+/* lá chủ đề bồng bềnh nhẹ (dùng thuộc tính translate riêng để không đè hiệu ứng hover) */
+.topic-card { animation: topic-float 6s ease-in-out infinite; }
+@keyframes topic-float { 0%, 100% { translate: 0 0 } 50% { translate: 0 -6px } }
+@media (prefers-reduced-motion: reduce) { .topic-card { animation: none; } }
+.btn-gold {
+  display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px; padding: .85rem 2rem;
+  background: linear-gradient(90deg, #c99a4b, #f0d398, #c99a4b); background-size: 200% 100%;
+  color: #1a1408; font-family: var(--font-grotesk), system-ui, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .12em; text-transform: uppercase;
+  box-shadow: 0 0 30px rgba(220,181,111,.35); transition: background-position .5s, box-shadow .5s;
+}
+.btn-gold:hover { background-position: 100% 0; box-shadow: 0 0 45px rgba(220,181,111,.55); }
+
+/* dải bài: mỗi lá nhấp nhô nhẹ (thuộc tính translate riêng, không đè transform) */
+.ribbon-card { animation: ribbon-bob 5s ease-in-out infinite; }
+@keyframes ribbon-bob { 0%, 100% { translate: 0 0 } 50% { translate: 0 -7px } }
+@media (prefers-reduced-motion: reduce) { .ribbon-card { animation: none; } }
+
+/* 3 lá bài lơ lửng ở đầu trang chủ */
+.hero-card { animation: hero-float 6s ease-in-out infinite; }
+@keyframes hero-float { 0%, 100% { translate: 0 0 } 50% { translate: 0 -10px } }
+@media (prefers-reduced-motion: reduce) { .hero-card { animation: none; } }
+
+/* chia bài: lá bay từ chồng bài ở giữa bàn ra đúng chỗ */
+.deal-in { animation: deal-in .55s cubic-bezier(.2,.8,.25,1) both; }
+@keyframes deal-in {
+  0% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(.92); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .deal-in { animation: none; } }
+
+/* xào bài: hai nửa bộ bài tách ra hai bên rồi các lá xen kẽ rơi vào giữa */
+.shuf-left { animation: shuf-left .65s ease-in-out both; }
+.shuf-right { animation: shuf-right .65s ease-in-out both; }
+@keyframes shuf-left { 0%, 100% { transform: none; } 35%, 55% { transform: translate(-78px, -8px) rotate(-12deg); } }
+@keyframes shuf-right { 0%, 100% { transform: none; } 35%, 55% { transform: translate(78px, -8px) rotate(12deg); } }
+.shuf-riffle { opacity: 0; animation: shuf-riffle .28s ease-in both; }
+@keyframes shuf-riffle { 0% { opacity: 1; transform: translate(var(--from), -24px) rotate(6deg); } 100% { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .shuf-left, .shuf-right, .shuf-riffle { animation: none; } }
+/* màn xào bài lớn hơn: hai nửa bộ bài tách xa hơn */
+@media (min-width: 768px) {
+  @keyframes shuf-left { 0%, 100% { transform: none; } 35%, 55% { transform: translate(-92px, -10px) rotate(-12deg); } }
+  @keyframes shuf-right { 0%, 100% { transform: none; } 35%, 55% { transform: translate(92px, -10px) rotate(12deg); } }
+}
+
+/* Thật hay Uống: thẻ câu hỏi bật ra */
+.thuy-pop { animation: thuy-pop .45s cubic-bezier(.2,.9,.3,1.3) both; }
+@keyframes thuy-pop { from { opacity: 0; transform: scale(.9) translateY(10px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .thuy-pop { animation: none; } }
+
+/* Thật hay Uống: lá câu hỏi trượt vào */
+.thuy-in-right { animation: thuy-in-right .38s cubic-bezier(.2,.8,.25,1) both; }
+.thuy-in-left { animation: thuy-in-left .38s cubic-bezier(.2,.8,.25,1) both; }
+@keyframes thuy-in-right { from { opacity: 0; transform: translateX(40px) rotate(3deg) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes thuy-in-left { from { opacity: 0; transform: translateX(-40px) rotate(-3deg) scale(.96); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .thuy-in-right, .thuy-in-left { animation: none; } }
