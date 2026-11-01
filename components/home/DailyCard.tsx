@@ -176,7 +176,7 @@ export default function DailyCard({ solar, lunar }: { solar: string; lunar: stri
         <div className="mt-1 text-xs text-muted">Âm lịch {lunar}</div>
         {open ? (
           <div key={card.id + String(reversed)} className="ritual-fade">
-            <h3 className="mt-3 font-serif text-[34px] leading-tight text-[#f3d9a4]">{card.vi} <span className="text-[20px] text-on-surface-variant">· {card.name}</span></h3>
+            <h2 className="mt-3 font-serif text-[34px] leading-tight text-[#f3d9a4]">{card.vi} <span className="text-[20px] text-on-surface-variant">· {card.name}</span></h2>
             <div className="mt-1 font-label text-[12px] uppercase tracking-[0.25em] text-[#dcb56f]/80">Chiều {reversed ? "ngược" : "xuôi"} · {reversed ? card.reversed : card.upright}</div>
             <p className="mt-4 max-w-xl text-[16px] leading-7 text-on-surface">
               {text}
@@ -190,7 +190,7 @@ export default function DailyCard({ solar, lunar }: { solar: string; lunar: stri
           </div>
         ) : (
           <div>
-            <h3 className="mt-3 font-serif text-[34px] leading-tight text-[#f3d9a4]">Vũ trụ đang gửi bạn điều gì?</h3>
+            <h2 className="mt-3 font-serif text-[34px] leading-tight text-[#f3d9a4]">Vũ trụ đang gửi bạn điều gì?</h2>
             <p className="mt-2 text-on-surface-variant">Hít một hơi thật sâu, nghĩ về điều bạn đang bận lòng, rồi chạm vào lá bài.</p>
             <button onClick={draw} disabled={busy} className="btn-gold mt-6"><Icon name="touch_app" className="text-[18px]" /> Rút một lá</button>
           </div>
